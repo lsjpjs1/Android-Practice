@@ -7,10 +7,11 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import practice.mvvm.advancedrecyclerview.R
+import practice.mvvm.advancedrecyclerview.data.PostData
 import practice.mvvm.advancedrecyclerview.databinding.PostPreviewBinding
 
 
-class PreviewAdapter (val previewList: Array<String>) : RecyclerView.Adapter<PreviewAdapter.CustomViewHolder>(){
+class PreviewAdapter (val postList: ArrayList<PostData>, private val listener: RecyclerViewClickListener) : RecyclerView.Adapter<PreviewAdapter.CustomViewHolder>(){
 
     inner class CustomViewHolder(val postPreviewBinding: PostPreviewBinding) : RecyclerView.ViewHolder(postPreviewBinding.root)
 
@@ -25,11 +26,17 @@ class PreviewAdapter (val previewList: Array<String>) : RecyclerView.Adapter<Pre
         )
 
     override fun getItemCount(): Int {
-        return previewList.size
+        return postList.size
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.postPreviewBinding.preview=previewList[position]
+        holder.postPreviewBinding.post=postList[position]
+        holder.postPreviewBinding.likeButton.setOnClickListener{
+            listener.onLikeButtonClick(holder.postPreviewBinding.likeButton,position)
+        }
+        holder.postPreviewBinding.clPreview.setOnClickListener{
+            listener.onPreviewClick(holder.postPreviewBinding.clPreview,position)
+        }
     }
 
 

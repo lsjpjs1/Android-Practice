@@ -1,12 +1,16 @@
 package practice.mvvm.advancedrecyclerview.repository
 
+import practice.mvvm.advancedrecyclerview.data.PostData
+
 class BoardRepository {
-    private val previewList: Array<String> = arrayOf("a","b","c","d")
-    private val changedPreviewList: Array<String> = arrayOf("1","2","3","4")
-    fun getPreviewList(): Array<String> {
+    private val previewList: ArrayList<PostData> = arrayListOf(PostData("hoon","post body",1,2))
+    private lateinit var newPreview: PostData
+    fun getPreviewList(): ArrayList<PostData> {
         return previewList
     }
-    fun getChangedPreviewList(): Array<String> {
-        return changedPreviewList
+
+    fun getNewPreview(size: Int): PostData{
+        return PostData("hoon$size","post body",0,0)
     }
+
 }
