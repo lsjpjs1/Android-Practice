@@ -41,4 +41,5 @@ class PreviewAdapter (val postList: ArrayList<PostData>, private val listener: R
 
 
 
+
 }

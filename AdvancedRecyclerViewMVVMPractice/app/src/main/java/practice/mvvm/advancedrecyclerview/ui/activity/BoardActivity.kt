@@ -31,19 +31,29 @@ class BoardActivity : AppCompatActivity(),RecyclerViewClickListener{
         binding.setLifecycleOwner(this)
         viewModel.getPreviews()
 
-        viewModel.posts.observe(this, Observer { posts ->
+        rv_post_preview.also {
+            it.layoutManager = GridLayoutManager(this,1)
+            it.setHasFixedSize(true)
+            it.adapter = PreviewAdapter(viewModel.posts.value!!,this)
+        }
+        /*viewModel.posts.observe(this, Observer { posts ->
             rv_post_preview.also {
-                it.layoutManager = GridLayoutManager(this,1)
-                it.setHasFixedSize(true)
                 it.adapter = PreviewAdapter(posts,this)
             }
-        })
+        })*/
+        addPreviewButton.setOnClickListener {
+            viewModel.addNewPreivew()
+            rv_post_preview.adapter!!.notifyDataSetChanged()
+        }
 
 
     }
 
+
+
     override fun onLikeButtonClick(view: View, position: Int) {
         viewModel.addLike(position)
+        rv_post_preview.adapter!!.notifyDataSetChanged()
     }
 
     override fun onPreviewClick(view: View, position: Int) {
@@ -56,6 +66,7 @@ class BoardActivity : AppCompatActivity(),RecyclerViewClickListener{
         intent.putExtra("post",post)
         startActivity(intent)
     }
+
 
 
 }

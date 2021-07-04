@@ -22,10 +22,9 @@
             android:layout_height="588dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/addPreviewButton"
             android:layout_width="120dp"
             android:layout_height="60dp"
-            android:onClick="@{()->BoardVM.addNewPreivew()}"
             android:text="Add" />
 
     </LinearLayout>
