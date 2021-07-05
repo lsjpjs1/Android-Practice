@@ -13,10 +13,10 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.fragment2,FragmentTwo()).commit()
         supportFragmentManager.beginTransaction().add(R.id.fragment3,FragmentThree()).commit()
         button3.setOnClickListener {
-            showFragment(fragment2)
+            showFragment(linear2)
         }
         button4.setOnClickListener {
-            hideFragment(fragment2)
+            hideFragment(linear2)
         }
     }
     fun showFragment(view: View){
